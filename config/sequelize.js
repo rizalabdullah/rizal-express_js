@@ -1,7 +1,7 @@
 const {Sequelize} = require(`sequelize`);
 
 const sequelize = new Sequelize({
-  database : 'eduwork-crud-v2',
+  database : 'eduwork-cruds-v2',
   host     : 'localhost',
   username : 'root',
   password : '',

@@ -11,16 +11,15 @@ router.delete("/product/:id", upload.single(`image`), productController.destroy)
 
 //router.get("/product", (req, res) => {
 //    res.send({
-//        status: "successfully",
-//        message: "welcome to Express JS tutorial",
+//       status: "successfully",
+//       message: "welcome to Express JS tutorial",
 //        product: "makanan"
 //    });
-//
+
 //});
 
-
 //router.get("/product/:id", (req, res) => {
-//    res.send({
+//        res.send({
 //        id: req.params.id
 //    });
 //});

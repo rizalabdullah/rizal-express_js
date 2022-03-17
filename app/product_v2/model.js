@@ -27,7 +27,7 @@ const Product = sequelize.define("products", {
     type: DataTypes.TEXT
   },
 }, {
-  freezeTableName: true
+ freezeTableName: true
 });
 
 module.exports = Product;

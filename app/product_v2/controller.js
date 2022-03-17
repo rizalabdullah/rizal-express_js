@@ -1,6 +1,7 @@
 const Product = require(`./model`);
 const fs = require(`fs`);
 const path = require(`path`);
+const port = process.env.PORT || 3000;
 
 const index = async (req, res) => {
     try{
@@ -37,7 +38,7 @@ const create = async (req, res) => {
 
         try{
             await Product.sync();
-            const result = await Product.create({users_id, name, price, stock, status, image_url : `http://localhost:4000/public/${image.originalname}`  });
+            const result = await Product.create({users_id, name, price, stock, status, image_url : `http://localhost:${port}/public/${image.originalname}`  });
             res.send(result);
         }
         catch(e) {
@@ -55,7 +56,7 @@ const update = async (req, res) => {
    
         try{
             await Product.sync();
-            await Product.update({users_id, name, price, stock, status, image_url : `http://localhost:4000/public/${image.originalname}`}, 
+            await Product.update({users_id, name, price, stock, status, image_url : `http://localhost:${port}/public/${image.originalname}`}, 
             {
                 where :{id:req.params.id},
             }); 

@@ -4,8 +4,8 @@ const path = require("path");
 const productRouter = require("./app/product/routes");
 const productRouterV2 = require("./app/product_v2/routes");
 const logger = require("morgan");
-const cors = require("cors")
-const port = process.env.PORT || 4000;
+const cors = require("cors");
+const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.urlencoded({extended:true}));
@@ -23,4 +23,4 @@ app.use((req,res,next) => {
     });
 });
 
-app.listen(port, () => console.log(`server ${port}`));
+app.listen(port, () => console.log(`listening on port http://localhost:${port}`));
