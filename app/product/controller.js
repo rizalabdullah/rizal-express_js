@@ -1,6 +1,7 @@
 const connection = require("../../config/mysql");
 const path = require("path");
 const fs = require("fs");
+const port = process.env.PORT || 3000;
 
 const index = ((req, res) => {
     const {search} = req.query;
@@ -34,7 +35,7 @@ const store = ((req, res) => {
         fs.renameSync(image.path, target);
     connection.query({
         sql : "INSERT INTO product (id_user,name, price,stock, status, image_url) values (?, ?, ?, ?, ?, ?) ",
-        values : [ parseInt(id_user), name, price, stock, status,  `http://localhost:4000/public/${image.originalname}`]
+        values : [ parseInt(id_user), name, price, stock, status,  `http://localhost:${port}/public/${image.originalname}`]
     }, _response(res));
     }   
 })
@@ -48,7 +49,7 @@ const update = ((req, res) => {
         const target = path.join(__dirname, "../../uploads", image.originalname);
         fs.renameSync(image.path, target);
         sql = "UPDATE product SET id_user = ?, name = ?, price = ?, stock = ?, status = ?, image_url = ? where id = ?";
-        values = [ parseInt(id_user), name, price, stock, status,  `http://localhost:4000/public/${image.originalname}`, req.params.id]
+        values = [ parseInt(id_user), name, price, stock, status,  `http://localhost:${port}/public/${image.originalname}`, req.params.id]
 
     } 
     else{
