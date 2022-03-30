@@ -1,6 +1,7 @@
+require(`dotenv`).config();
 const { MongoClient } = require('mongodb');
 //user:pwd mongodb
-const url = 'mongodb://eduwork:eduwork@localhost:27017?authSource=admin';
+const url = process.env.MONGO_URL;
 const client = new MongoClient(url);
 
 (async () => {
@@ -13,6 +14,6 @@ const client = new MongoClient(url);
    }
 })();
 
-const db = client.db(`eduwork-native`);
+const db = client.db(`mongodb-native`);
 
 module.exports = db;

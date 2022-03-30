@@ -16,7 +16,7 @@ const productSchema = mongoose.Schema({
     stock : Number,
     status : {
         type : Boolean,
-        default : true
+        default : ""
     },
     image_url : {
         type: String

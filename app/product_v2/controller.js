@@ -15,19 +15,17 @@ const index = async (req, res) => {
 }
 
 const viewById = async (req, res) => {
-    try{
-        await Product.sync();
-        const result = await Product.findAll({
-            where : {
+    try {
+        const product = await Product.findAll({
+            where: {
                 id: req.params.id
             }
         });
-        res.send(result);
-    }
-    catch(e) {
-        res.send(e);
+        res.json(product[0]);
+    } catch (error) {
+        res.json({ message: error.message });
     }  
-}
+  }
 
 const create = async (req, res) => {
     const {users_id, name, price, stock, status} = req.body;
@@ -45,6 +43,18 @@ const create = async (req, res) => {
             res.send(e);
         }  
     }
+    else{
+        try{
+            await Product.sync();
+            const result = await Product.create({users_id, name, price, stock, status  });
+            res.send(result);
+        }
+        catch(e) {
+            res.send(e);
+        }  
+
+    }
+
 }
 
 const update = async (req, res) => {
@@ -68,7 +78,25 @@ const update = async (req, res) => {
             res.send(e);
         }
     }
-}
+    else{
+      
+   
+        try{
+            await Product.sync();
+            await Product.update({users_id, name, price, stock, status}, 
+            {
+                where :{id:req.params.id},
+            }); 
+            res.send({
+                message : `Update Success`
+            });
+        }
+        catch(e) {
+            res.send(e);
+        }
+    }
+    }
+
 
 const destroy = async (req, res) => {
 
